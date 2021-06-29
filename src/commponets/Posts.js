@@ -1,16 +1,28 @@
 import Post from "./Post";
 import React, {useEffect, useState} from "react";
+import {getPosts} from "../Services/Api";
 export default function Posts(){
 
-    const [post, setPost] = useState([]);
-    console.log(post);
+    let [posts, setPosts] = useState([]);
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(response => response.json())
-            .then(json => setPost(json))
+        getPosts().then(response => {
+            setPosts(response.data);
+        });
     }, []);
+
+    const onPostsDetails = (id) => {
+        console.log(id);
+    }
     return (
         <div>
-            {post.map(value => <Post id={value.id} userId={value.userId} title={value.title }/>)}
+            {posts.map(value => <Post
+                key={value.id}
+                id={value.id}
+                userId={value.userId}
+                title={value.title }
+                onPostsDetails={onPostsDetails}
+            />)}
+
+
         </div>)
 }

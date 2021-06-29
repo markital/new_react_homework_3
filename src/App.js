@@ -1,14 +1,10 @@
-import './App.css';
-import Posts from "./posts/Posts";
+import Posts from "./commponets/Posts";
 
-function App() {
+export default function App() {
+
     return (
-        <div className="App">
-
-            <Posts/>
-
+        <div>
+            <Posts />
         </div>
     );
 }
-
-export default App;
